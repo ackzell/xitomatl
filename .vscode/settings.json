@@ -1,5 +1,11 @@
 {
-    "workbench.colorTheme": "Black Italic",
-    "material-icon-theme.activeIconPack": "vue",
-    "workbench.iconTheme": "eq-material-theme-icons-darker"
+  "workbench.colorTheme": "Black Italic",
+  "material-icon-theme.activeIconPack": "vue",
+  "workbench.iconTheme": "eq-material-theme-icons-darker",
+  "eslint.useFlatConfig": true,
+  "editor.fontFamily": "'Source Code Pro', 'Cascadia Code',  Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "editor.fontLigatures": true,
+  "editor.formatOnSave": true,
+  "arrayIndexInlay.enabled": true
 }
