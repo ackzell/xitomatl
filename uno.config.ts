@@ -24,6 +24,7 @@ export default mergeConfigs([
         fonts: {
           sans: 'Nunito',
           pair: 'Alegreya',
+          numeral: 'Michroma',
           mono: ['Fira Code', 'Fira Mono:400,700'],
         },
       }),

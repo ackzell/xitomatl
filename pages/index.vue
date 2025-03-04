@@ -12,12 +12,19 @@ console.log(myVar, myVar2);
   <div font-pair>
     <h1 text-3xl font-sans>Xitomatl 🍅</h1>
 
-    <p class="">Una app para pomodoro</p>
-    <div bg="#ea5a47" w-50px h-50px />
-    <div class="bg-#d22f27 w-50px h-50px" />
-    <div class="bg-#b1cc33 w-50px h-50px" />
-    <div class="bg-#1e1e1e w-50px h-50px" />
+    <p class="">A pomodoro compliant app</p>
+    <div flex>
+      <div bg="#ea5a47" w-50px h-50px />
+      <div class="bg-#d22f27 w-50px h-50px" />
+      <div class="bg-#b1cc33 w-50px h-50px" />
+      <div class="bg-#1e1e1e w-50px h-50px" />
+      <div class="bg-#fafafa w-50px h-50px border border-1 border-[#1e1e1e]" />
+    </div>
 
-    <RouterLink to="/timer">Get started!</RouterLink>
+    <div text="center xl">
+      <RouterLink underline class="hover:text-[#d22f27]" to="/active-task"
+        >Get started!</RouterLink
+      >
+    </div>
   </div>
 </template>
