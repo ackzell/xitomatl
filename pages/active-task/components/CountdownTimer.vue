@@ -38,10 +38,10 @@ const remainingSeconds = computed(() =>
     </p>
 
     <div flex gap-2>
-      <button :disabled="isActive" @click="start()">start</button>
-      <button @click="stop()">stop</button>
-      <button @click="pause()">pause</button>
-      <button @click="resume()">resume</button>
+      <button btn :disabled="isActive" @click="start()">Start</button>
+      <button btn :disabled="!isActive" @click="stop()">Stop</button>
+      <button btn :disabled="!isActive" @click="pause()">Pause</button>
+      <button btn-outline :disabled="isActive" @click="resume()">Resume</button>
     </div>
   </div>
 </template>

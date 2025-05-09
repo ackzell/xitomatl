@@ -38,5 +38,16 @@ export default mergeConfigs([
         light: '#fdfdfd',
       },
     },
+    shortcuts: {
+      'btn-base': 'font-sans px-4 py-2 rounded-md font-bold transition-all',
+      'btn-disabled': 'disabled:opacity-50 disabled:cursor-not-allowed',
+      'btn-hover': 'hover:not-disabled:scale-105 hover:not-disabled:shadow-xl',
+      'btn-primary': 'text-white bg-dark hover:not-disabled:bg-secondary',
+      btn: 'btn-base btn-primary btn-hover btn-disabled',
+
+      // variants
+      'btn-outline':
+        'btn bg-transparent text-light border border-light hover:not-disabled:border-accent hover:not-disabled:bg-transparent',
+    },
   },
 ]);
