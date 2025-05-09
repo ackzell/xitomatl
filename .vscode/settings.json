@@ -1,7 +1,7 @@
 {
   "workbench.colorTheme": "Black Italic",
   "material-icon-theme.activeIconPack": "vue",
-  "workbench.iconTheme": "vs-seti",
+  "workbench.iconTheme": "ayu",
   "eslint.useFlatConfig": true,
   "editor.fontFamily": "'Source Code Pro', 'Cascadia Code',  Menlo, Monaco, 'Courier New', monospace",
   "editor.fontSize": 14,

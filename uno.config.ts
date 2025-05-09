@@ -29,5 +29,14 @@ export default mergeConfigs([
         },
       }),
     ],
+    theme: {
+      colors: {
+        primary: '#d22f27',
+        secondary: '#ea5a47',
+        accent: '#b1cc33',
+        dark: '#1e1e1e',
+        light: '#fdfdfd',
+      },
+    },
   },
 ]);

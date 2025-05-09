@@ -9,16 +9,16 @@ let myVar2 = 'alal';
 console.log(myVar, myVar2);
 </script>
 <template>
-  <div font-pair>
+  <div font-sans>
     <h1 text-3xl font-sans>Xitomatl 🍅</h1>
 
     <p class="">A pomodoro compliant app</p>
     <div flex>
-      <div bg="#ea5a47" w-50px h-50px />
-      <div class="bg-#d22f27 w-50px h-50px" />
-      <div class="bg-#b1cc33 w-50px h-50px" />
-      <div class="bg-#1e1e1e w-50px h-50px" />
-      <div class="bg-#fafafa w-50px h-50px border border-1 border-[#1e1e1e]" />
+      <div bg="secondary" w-50px h-50px />
+      <div class="bg-primary w-50px h-50px" />
+      <div class="bg-accent w-50px h-50px" />
+      <div class="bg-dark w-50px h-50px" />
+      <div class="bg-light w-50px h-50px" border="1px solid dark" />
     </div>
 
     <div text="center xl">

@@ -22,8 +22,18 @@ const remainingSeconds = computed(() =>
 </script>
 
 <template>
-  <div bg="#d22f27" p-4 flex flex-col items-center justify-center gap-3>
-    <p font-numeral text="#fafafa 3xl center" bg="#ea5a47" w-full>
+  <div
+    bg="primary"
+    p-4
+    flex
+    flex-col
+    items-center
+    justify-center
+    gap-3
+    drop-shadow-xl
+    color="dark"
+  >
+    <p font-numeral text="light 3xl center" w-full>
       {{ remainingMinutes }}:{{ remainingSeconds }}
     </p>
 
