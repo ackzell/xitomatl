@@ -38,7 +38,7 @@ const remainingSeconds = computed(() =>
       {{ remainingMinutes }}:{{ remainingSeconds }}
     </p>
 
-    <Progress :model-value="83" />
+    <Progress :model-value="53" />
 
     <div flex gap-2>
       <button btn :disabled="isActive" @click="start()">Start</button>
