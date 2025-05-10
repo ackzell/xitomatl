@@ -7,18 +7,16 @@ import {
 } from 'reka-ui';
 import { computed, type HTMLAttributes } from 'vue';
 
-const props = withDefaults(
-  defineProps<ProgressRootProps & { class?: HTMLAttributes['class'] }>(),
-  {
-    modelValue: 0,
-  },
-);
+interface Props extends ProgressRootProps {
+  class?: HTMLAttributes['class'];
+}
 
-let a;
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: 0,
+});
 
 const delegatedProps = computed(() => {
   const { class: _, ...delegated } = props;
-
   return delegated;
 });
 </script>
