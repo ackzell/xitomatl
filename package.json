@@ -14,12 +14,19 @@
     "lintfix": "eslint . --fix && prettier --write --list-different ."
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.6",
     "@unocss/core": "^66.0.0",
     "@unocss/reset": "66.1.0-beta.3",
     "@vueuse/core": "^12.7.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.3",
+    "lucide-vue-next": "^0.509.0",
     "prettier": "^3.5.1",
+    "reka-ui": "^2.2.1",
+    "tailwind-merge": "^3.2.0",
+    "tw-animate-css": "^1.2.9",
     "vue": "latest",
     "vue-router": "latest"
   },
@@ -30,7 +37,10 @@
     "@unocss/preset-web-fonts": "^66.0.0",
     "@unocss/preset-wind": "^66.0.0",
     "@vueuse/nuxt": "^12.7.0",
+    "autoprefixer": "^10.4.21",
     "nuxt": "^3.17.2",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.6",
     "unocss": "^66.0.0"
   }
 }

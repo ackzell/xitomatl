@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useCountdown } from '@vueuse/core';
+import Progress from '@/components/ui/progress/Progress.vue';
 
 const countdownSeconds = 121;
 const { remaining, start, stop, pause, resume, isActive } = useCountdown(
@@ -36,6 +37,8 @@ const remainingSeconds = computed(() =>
     <p font-numeral text="light 3xl center" w-full>
       {{ remainingMinutes }}:{{ remainingSeconds }}
     </p>
+
+    <Progress :model-value="83" />
 
     <div flex gap-2>
       <button btn :disabled="isActive" @click="start()">Start</button>
