@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import { useCountdown } from '@vueuse/core';
 import Progress from '@/components/ui/progress/Progress.vue';
+import { useSounds } from '~/lib/useSounds';
 
-const countdownSeconds = 121;
+const countdownSeconds = 5;
 const { remaining, start, stop, pause, resume, isActive } = useCountdown(
   countdownSeconds,
   {
-    onComplete() {},
+    onComplete() {
+      // Play sound
+      const { play } = useSounds();
+      play('ding');
+    },
     onTick() {},
   },
 );
@@ -20,6 +25,10 @@ const remainingMinutes = computed(() =>
 const remainingSeconds = computed(() =>
   (remaining.value % 60).toString().padStart(2, '0'),
 );
+
+const remainingPercent = computed(() => {
+  return (remaining.value / countdownSeconds) * 100;
+});
 </script>
 
 <template>
@@ -38,7 +47,7 @@ const remainingSeconds = computed(() =>
       {{ remainingMinutes }}:{{ remainingSeconds }}
     </p>
 
-    <Progress :model-value="53" />
+    <Progress :model-value="remainingPercent" />
 
     <div flex gap-2>
       <button btn :disabled="isActive" @click="start()">Start</button>

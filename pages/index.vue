@@ -1,12 +1,10 @@
 <script lang="ts">
 import '@unocss/reset/tailwind-compat.css';
+import { useSounds } from '~/lib/useSounds';
 
-// a  13
-let myVar = 1;
+const { init } = useSounds();
 
-let myVar2 = 'alal';
-
-console.log(myVar, myVar2);
+init();
 </script>
 <template>
   <div font-sans>
