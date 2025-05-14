@@ -25,7 +25,6 @@ const delegatedProps = computed(() => {
   <ProgressRoot
     data-slot="progress"
     v-bind="delegatedProps"
-    bg-secondary
     :class="cn('relative h-2 w-full overflow-hidden rounded-full', props.class)"
   >
     <ProgressIndicator

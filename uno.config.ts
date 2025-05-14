@@ -36,6 +36,10 @@ export default mergeConfigs([
         accent: '#b1cc33',
         dark: '#1e1e1e',
         light: '#fdfdfd',
+        break: '#e3a008',
+        breakLighter: '#f7b722',
+        longBreak: '#404040',
+        longBreakLighter: '#606060',
       },
     },
     shortcuts: {
@@ -47,7 +51,7 @@ export default mergeConfigs([
 
       // variants
       'btn-outline':
-        'btn bg-transparent text-light border border-light hover:not-disabled:border-accent hover:not-disabled:bg-transparent',
+        'btn bg-transparent text-light border border-light hover:not-disabled:bg-transparent',
     },
   },
 ]);

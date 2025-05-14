@@ -8,7 +8,7 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
-  modules: ['@nuxt/eslint', '@unocss/nuxt', '@vueuse/nuxt'],
+  modules: ['@nuxt/eslint', '@unocss/nuxt', '@vueuse/nuxt', '@nuxt/icon'],
   unocss: {
     nuxtLayers: true,
   },
