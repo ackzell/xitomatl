@@ -5,13 +5,18 @@ import { useSounds } from '~/lib/useSounds';
 
 interface CountdownTimerProps {
   /**
-   * The type of countdown timer. It determines the style and behavior of the timer.
-   */
-  type: 'pomodoro' | 'break' | 'longBreak';
-  /**
    * The duration of the timer in seconds.
    */
   duration: number;
+  /**
+   * Styles for the timer.
+   * - backgroundColor: Background color for the timer.
+   * - progressBackground: "Track" color once the timer is started.
+   */
+  styles?: {
+    backgroundColor?: string;
+    progressBackground?: string;
+  };
 }
 
 interface CountdownTimerEmits {
@@ -21,7 +26,12 @@ interface CountdownTimerEmits {
   (e: 'complete'): void;
 }
 
-const props = defineProps<CountdownTimerProps>();
+const props = withDefaults(defineProps<CountdownTimerProps>(), {
+  styles: () => ({
+    backgroundColor: 'dark',
+    progressBackground: 'gray-700',
+  }),
+});
 const emit = defineEmits<CountdownTimerEmits>();
 
 const { play } = useSounds();
@@ -63,42 +73,28 @@ watch(
 
 <template>
   <div
-    :bg="
-      props.type === 'break'
-        ? 'break'
-        : props.type === 'longBreak'
-          ? 'longBreak'
-          : 'primary'
-    "
-    h-dvh
+    :class="`bg-${props.styles.backgroundColor}`"
     p-4
     flex
     flex-col
     items-center
     justify-center
     gap-3
-    drop-shadow-xl
-    color="dark"
+    drop-shadow-lg
   >
     <p font-numeral text="light 3xl center" w-full>
       {{ remainingMinutes }}:{{ remainingSeconds }}
     </p>
 
     <Progress
-      :bg="
-        props.type === 'break'
-          ? 'breakLighter'
-          : props.type === 'longBreak'
-            ? 'longBreakLighter'
-            : 'secondary'
-      "
+      :class="`bg-${props.styles.progressBackground}`"
       :model-value="remainingPercent"
       sm:w-xs
     />
 
     <div flex gap-2>
       <button
-        btn
+        btn-outline
         flex
         items-center
         gap-2
@@ -108,7 +104,8 @@ watch(
         <!-- <span text-lg>{{ isActive ? 'Pause' : 'Start' }}</span> -->
       </button>
       <button
-        btn-outline
+        btn
+        bg-transparent
         flex
         items-center
         gap-2

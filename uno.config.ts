@@ -53,5 +53,20 @@ export default mergeConfigs([
       'btn-outline':
         'btn bg-transparent text-light border border-light hover:not-disabled:bg-transparent',
     },
+    /**
+     * UnoCSS relies on static analysis to generate classes.
+     * If the class name is dynamically constructed
+     * (e.g., bg-${props.styles.progressBackground}),
+     * UnoCSS might not generate the required class unless
+     * the value is explicitly defined in the configuration.
+     */
+    safelist: [
+      'bg-primary',
+      'bg-secondary',
+      'bg-break',
+      'bg-breakLighter',
+      'bg-longBreak',
+      'bg-longBreakLighter',
+    ],
   },
 ]);

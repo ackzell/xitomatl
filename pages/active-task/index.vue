@@ -9,9 +9,30 @@ const breakDuration = 3; // 5 * 60; // 5 minutes
 const longBreakDuration = 4; // 15 * 60; // 15 minutes
 
 const timers = {
-  pomodoro: { type: 'pomodoro' as 'pomodoro', duration: pomodoroDuration },
-  break: { type: 'break' as 'break', duration: breakDuration },
-  longBreak: { type: 'longBreak' as 'longBreak', duration: longBreakDuration },
+  pomodoro: {
+    type: 'pomodoro',
+    duration: pomodoroDuration,
+    styles: {
+      backgroundColor: 'primary',
+      progressBackground: 'secondary',
+    },
+  },
+  break: {
+    type: 'break',
+    duration: breakDuration,
+    styles: {
+      backgroundColor: 'break',
+      progressBackground: 'breakLighter',
+    },
+  },
+  longBreak: {
+    type: 'longBreak',
+    duration: longBreakDuration,
+    styles: {
+      backgroundColor: 'longBreak',
+      progressBackground: 'longBreakLighter',
+    },
+  },
 };
 
 let currentTimer = computed(() => {
@@ -35,11 +56,15 @@ function onComplete() {
 </script>
 
 <template>
-  <div color-light bg="primary" h-screen>
+  <div
+    color-light
+    :class="`bg-${currentTimer.styles.backgroundColor}`"
+    h-screen
+  >
     {{ pomodoroCount }}
     <CountdownTimer
-      :type="currentTimer.type"
       :duration="currentTimer.duration"
+      :styles="currentTimer.styles"
       @complete="onComplete()"
     />
   </div>
