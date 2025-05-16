@@ -34,6 +34,8 @@ const delegatedProps = computed(() => {
       w-full
       flex-1
       transition-all
+      ease-in-out
+      duration-800
       :style="`transform: translateX(-${100 - (props.modelValue ?? 0)}%);`"
     />
   </ProgressRoot>

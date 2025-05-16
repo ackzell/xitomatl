@@ -13,7 +13,7 @@ init();
     <p class="">A pomodoro compliant app</p>
     <div flex>
       <div bg="secondary" w-50px h-50px />
-      <div class="bg-break w-50px h-50px" />
+      <div class="bg-primary-700 w-50px h-50px" />
       <div class="bg-primary w-50px h-50px" />
       <div class="bg-accent w-50px h-50px" />
       <div class="bg-dark w-50px h-50px" />

@@ -35,14 +35,20 @@ const props = withDefaults(defineProps<CountdownTimerProps>(), {
 const emit = defineEmits<CountdownTimerEmits>();
 
 const { play } = useSounds();
+const isFlashing = ref(false);
 
 const { remaining, stop, pause, resume, isActive, reset } = useCountdown(
   props.duration,
   {
     onComplete() {
       play('ding');
-      reset();
-      emit('complete');
+      isFlashing.value = true;
+      setTimeout(() => {
+        isFlashing.value = false;
+
+        reset();
+        emit('complete');
+      }, 2000);
     },
     onTick() {},
   },
@@ -69,11 +75,26 @@ watch(
     reset(newDuration);
   },
 );
+
+useEventListener('keydown', (event: KeyboardEvent) => {
+  if (event.code === 'Space') {
+    event.preventDefault();
+    if (isActive.value) {
+      pause();
+    } else {
+      resume();
+    }
+  }
+});
 </script>
 
 <template>
   <div
-    :class="`bg-${props.styles.backgroundColor}`"
+    :class="[
+      `bg-${props.styles.backgroundColor}`,
+      isFlashing ? '!bg-accent animate-heart-beat ' : '',
+    ]"
+    w-full
     p-4
     flex
     flex-col
@@ -81,13 +102,19 @@ watch(
     justify-center
     gap-3
     drop-shadow-lg
+    transition-all
+    duration-300
+    ease-in-out
   >
     <p font-numeral text="light 3xl center" w-full>
       {{ remainingMinutes }}:{{ remainingSeconds }}
     </p>
 
     <Progress
-      :class="`bg-${props.styles.progressBackground}`"
+      :class="[
+        `bg-${props.styles.backgroundColor}-400`,
+        isFlashing && '!bg-accent-400',
+      ]"
       :model-value="remainingPercent"
       sm:w-xs
     />
@@ -98,6 +125,7 @@ watch(
         flex
         items-center
         gap-2
+        :disabled="isFlashing"
         @click="isActive ? pause() : resume()"
       >
         <Icon :name="isActive ? 'mdi:pause' : 'mdi:play'" class="w-6 h-6" />
@@ -109,8 +137,11 @@ watch(
         flex
         items-center
         gap-2
-        :disabled="!isActive"
-        @click="stop()"
+        :disabled="!isActive || isFlashing"
+        @click="
+          stop();
+          reset(props.duration);
+        "
       >
         <Icon name="mdi:stop" class="w-6 h-6" />
         <!-- <span text-lg>Stop</span> -->

@@ -14,23 +14,20 @@ const timers = {
     duration: pomodoroDuration,
     styles: {
       backgroundColor: 'primary',
-      progressBackground: 'secondary',
     },
   },
   break: {
     type: 'break',
     duration: breakDuration,
     styles: {
-      backgroundColor: 'break',
-      progressBackground: 'breakLighter',
+      backgroundColor: 'secondary',
     },
   },
   longBreak: {
     type: 'longBreak',
     duration: longBreakDuration,
     styles: {
-      backgroundColor: 'longBreak',
-      progressBackground: 'longBreakLighter',
+      backgroundColor: 'dark',
     },
   },
 };
@@ -56,16 +53,13 @@ function onComplete() {
 </script>
 
 <template>
-  <div
-    color-light
-    :class="`bg-${currentTimer.styles.backgroundColor}`"
-    h-screen
-  >
-    {{ pomodoroCount }}
+  <countdowntimer h-screen flex flex-col justify-center>
+    <!-- {{ pomodoroCount }} -->
     <CountdownTimer
+      h-screen
       :duration="currentTimer.duration"
       :styles="currentTimer.styles"
       @complete="onComplete()"
     />
-  </div>
+  </countdowntimer>
 </template>
