@@ -53,7 +53,7 @@ function onComplete() {
 </script>
 
 <template>
-  <div bg-dark font-sans text-light h-screen flex flex-col justify-center>
+  <div bg-dark font-sans text-light h-screen flex flex-col justify-center overflow-hidden>
     Completed pomodoros: {{ pomodoroCount }}
     <CountdownTimer
       h-screen
