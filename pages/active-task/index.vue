@@ -53,13 +53,13 @@ function onComplete() {
 </script>
 
 <template>
-  <countdowntimer h-screen flex flex-col justify-center>
-    <!-- {{ pomodoroCount }} -->
+  <div bg-dark font-sans text-light h-screen flex flex-col justify-center>
+    Completed pomodoros: {{ pomodoroCount }}
     <CountdownTimer
       h-screen
       :duration="currentTimer.duration"
       :styles="currentTimer.styles"
       @complete="onComplete()"
     />
-  </countdowntimer>
+  </div>
 </template>

@@ -111,14 +111,14 @@ export default mergeConfigs([
     safelist: [
       'bg-primary',
       'bg-primary-400',
-      'bg-primary-800',
+      'bg-primary-700',
       'bg-secondary',
       'bg-secondary-400',
-      'bg-secondary-800',
+      'bg-secondary-700',
       'bg-dark',
       'bg-dark-400',
-      'bg-dark-800',
-      'animate-my-heart-beat',
+      'bg-dark-700',
+      'bg-accent-700',
     ],
   },
 ]);

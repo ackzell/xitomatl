@@ -2,6 +2,7 @@
 import { useCountdown } from '@vueuse/core';
 import Progress from '@/components/ui/progress/Progress.vue';
 import { useSounds } from '~/lib/useSounds';
+import gsap from 'gsap';
 
 interface CountdownTimerProps {
   /**
@@ -86,6 +87,55 @@ useEventListener('keydown', (event: KeyboardEvent) => {
     }
   }
 });
+
+// Reactive references for animated digits
+const animatedMinutes = ref(remainingMinutes.value.split(''));
+const animatedSeconds = ref(remainingSeconds.value.split(''));
+
+// Helper function to animate digit changes
+function animateDigits(
+  newValue: string,
+  oldValue: string,
+  classPrefix: string,
+  animatedRef: Ref<string[]>,
+) {
+  const newDigits = newValue.split('');
+  const oldDigits = oldValue.split('');
+
+  // Temporarily store the old digits for animation
+  animatedRef.value = oldDigits;
+
+  oldDigits.forEach((digit, index) => {
+    if (digit !== newDigits[index]) {
+      // Animate the old digit out
+      gsap.to(`.${classPrefix}-${index}`, {
+        y: '25%',
+        opacity: 0,
+        duration: 0.25,
+        ease: 'power2.in',
+        onComplete: () => {
+          // Update the digit to the new value after the old digit animates out
+          animatedRef.value = newDigits;
+
+          // Animate the new digit in
+          gsap.fromTo(
+            `.${classPrefix}-${index}`,
+            { y: '-25%', opacity: 0 },
+            { y: '0%', opacity: 1, duration: 0.25, ease: 'power2.out' },
+          );
+        },
+      });
+    }
+  });
+}
+
+watch(remainingMinutes, (newValue, oldValue) => {
+  animateDigits(newValue, oldValue, 'minute-digit', animatedMinutes);
+});
+
+watch(remainingSeconds, (newValue, oldValue) => {
+  animateDigits(newValue, oldValue, 'second-digit', animatedSeconds);
+});
 </script>
 
 <template>
@@ -100,14 +150,38 @@ useEventListener('keydown', (event: KeyboardEvent) => {
     flex-col
     items-center
     justify-center
-    gap-3
+    gap-8
+    py-8
     drop-shadow-lg
     transition-all
     duration-300
     ease-in-out
   >
-    <p font-numeral text="light 3xl center" w-full>
-      {{ remainingMinutes }}:{{ remainingSeconds }}
+    <!-- <p font-numeral text="light 5xl center">
+      {{ remainingMinutes }} : {{ remainingSeconds }}
+    </p> -->
+    <p font-numeral text="light 5xl center" w-full flex justify-center>
+      <span
+        v-for="(digit, index) in animatedMinutes"
+        :key="'minute-' + index"
+        :class="'minute-digit-' + index"
+        inline-block
+        text-center
+        w-12
+      >
+        {{ digit }}
+      </span>
+      <span inline-block w-8>:</span>
+      <span
+        v-for="(digit, index) in animatedSeconds"
+        :key="'second-' + index"
+        :class="'second-digit-' + index"
+        inline-block
+        text-center
+        w-12
+      >
+        {{ digit }}
+      </span>
     </p>
 
     <Progress
