@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="ts" setup>
 import '@unocss/reset/tailwind-compat.css';
 import { useSounds } from '~/lib/useSounds';
 
