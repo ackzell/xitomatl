@@ -8,8 +8,6 @@ const pomodoroDuration = 5; //  25 * 60; // 25 minutes
 const breakDuration = 3; // 5 * 60; // 5 minutes
 const longBreakDuration = 4; // 15 * 60; // 15 minutes
 
-let unused;
-
 const timers = {
   pomodoro: {
     type: 'pomodoro',
