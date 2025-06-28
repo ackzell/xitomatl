@@ -23,6 +23,6 @@ jobs:
           node-version-file: .nvmrc
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm ci
+        run: pnpm install
       - name: Run linter
         run: pnpm lint
