@@ -9,7 +9,6 @@ const breakDuration = 3; // 5 * 60; // 5 minutes
 const longBreakDuration = 4; // 15 * 60; // 15 minutes
 
 let unused;
-let anotherUnused;
 
 const timers = {
   pomodoro: {
