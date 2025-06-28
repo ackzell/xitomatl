@@ -12,6 +12,7 @@ interface Props extends ProgressRootProps {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  class: '',
   modelValue: 0,
 });
 
