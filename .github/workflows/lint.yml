@@ -1,0 +1,40 @@
+name: Lint
+
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the develop branch
+  push:
+    branches:
+      - develop
+  # Replace pull_request with pull_request_target if you
+  # plan to use this action with forks, see the Limitations section
+  pull_request:
+    branches:
+      - develop
+
+# Down scope as necessary via https://docs.github.com/en/actions/security-guides/automatic-token-authentication#modifying-the-permissions-for-the-github_token
+permissions:
+  checks: write
+  contents: write
+
+jobs:
+  lint:
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        node-version: [22]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Run linter
+        run: pnpm lint
