@@ -58,7 +58,9 @@ function onComplete() {
     font-sans
     text-light
     h-screen
-    flex     flex-col     justify-center
+    flex
+    flex-col
+    justify-center
     overflow-hidden
   >
     Completed pomodoros: {{ pomodoroCount }}
