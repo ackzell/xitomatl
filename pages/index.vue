@@ -8,9 +8,6 @@ init();
 </script>
 <template>
   <div font-sans>
-    <h1 text-3xl font-sans>Xitomatl 🍅</h1>
-
-    <p class="">A pomodoro compliant app</p>
     <div flex>
       <div bg="secondary" w-50px h-50px />
       <div class="bg-primary-700 w-50px h-50px" />

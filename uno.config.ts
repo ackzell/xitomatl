@@ -100,6 +100,7 @@ export default mergeConfigs([
       // variants
       'btn-outline':
         'btn bg-transparent text-light border border-light hover:not-disabled:bg-transparent',
+      'btn-rounded': 'btn px-3 py-3 bg-transparent text-light border border-light rounded-full aspect-square'
     },
     /**
      * UnoCSS relies on static analysis to generate classes.
