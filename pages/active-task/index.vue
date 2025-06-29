@@ -37,9 +37,11 @@ let currentTimer = computed(() => {
 
   if (cyclePosition === 7) {
     return timers.longBreak; // Long break after 4 pomodoros
-  } else if (cyclePosition % 2 === 0) {
+  }
+  else if (cyclePosition % 2 === 0) {
     return timers.pomodoro; // Pomodoro on even positions (0, 2, 4, 6)
-  } else {
+  }
+  else {
     return timers.break; // Break on odd positions (1, 3, 5)
   }
 });

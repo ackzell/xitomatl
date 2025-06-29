@@ -8,11 +8,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "pnpm run lint:eslint && pnpm run lint:prettier",
-    "lint:eslint": "eslint .",
-    "lint:prettier": "prettier . --check",
-    "prettierfix": "prettier . --write",
-    "lintfix": "eslint . --fix && prettier --write --list-different ."
+    "lint": "eslint .",
+    "lintfix": "eslint . --fix"
   },
   "dependencies": {
     "@unocss/core": "^66.0.0",
@@ -20,12 +17,9 @@
     "@vueuse/core": "^12.7.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "eslint-config-prettier": "^10.0.1",
-    "eslint-plugin-prettier": "^5.2.3",
     "gsap": "^3.13.0",
     "howler": "^2.2.4",
     "lucide-vue-next": "^0.509.0",
-    "prettier": "^3.5.1",
     "reka-ui": "^2.2.1",
     "tw-animate-css": "^1.2.9",
     "vue": "latest",
