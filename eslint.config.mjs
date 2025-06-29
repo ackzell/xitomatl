@@ -1,5 +1,5 @@
-import withNuxt from './.nuxt/eslint.config.mjs';
 import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin'; // Import the plugin
+import withNuxt from './.nuxt/eslint.config.mjs';
 
 export default withNuxt([
   {
@@ -7,7 +7,7 @@ export default withNuxt([
     languageOptions: {
       parserOptions: {
         parser: {
-          ts: '@typescript-eslint/parser',
+          'ts': '@typescript-eslint/parser',
           '<template>': 'espree',
         },
         ecmaVersion: 'latest',
@@ -27,6 +27,13 @@ export default withNuxt([
           varsIgnorePattern: '^_',
         },
       ],
+      // 'vue/max-attributes-per-line': [
+      //   'warn',
+      //   {
+      //     singleline: 3,
+      //     multiline: 2,
+      //   },
+      // ],
     },
   },
 ]);
