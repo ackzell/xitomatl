@@ -9,7 +9,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "lintfix": "eslint . --fix"
+    "lintfix": "eslint . --fix",
+    "prepare": "husky"
   },
   "dependencies": {
     "@unocss/core": "^66.0.0",
@@ -37,6 +38,7 @@
     "@unocss/preset-wind": "^66.0.0",
     "@vueuse/nuxt": "^12.7.0",
     "autoprefixer": "^10.4.21",
+    "husky": "^9.1.7",
     "nuxt": "^3.17.2",
     "postcss": "^8.5.3",
     "unocss": "^66.0.0"
