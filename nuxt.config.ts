@@ -1,6 +1,8 @@
+import { defineNuxtConfig } from 'nuxt/config';
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
+  modules: [`@nuxt/eslint`, `@unocss/nuxt`, `@vueuse/nuxt`, `@nuxt/icon`],
   devtools: {
     enabled: true,
 
@@ -8,7 +10,15 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
-  modules: ['@nuxt/eslint', '@unocss/nuxt', '@vueuse/nuxt', '@nuxt/icon'],
+  compatibilityDate: `2024-11-01`,
+  eslint: {
+    config: {
+      stylistic: {
+        quotes: `single`,
+        semi: true,
+      },
+    },
+  },
   unocss: {
     nuxtLayers: true,
   },

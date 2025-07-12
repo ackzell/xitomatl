@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useCountdown } from '@vueuse/core';
+import gsap from 'gsap';
 import Progress from '@/components/ui/progress/Progress.vue';
 import { useSounds } from '~/lib/useSounds';
-import gsap from 'gsap';
 
 interface CountdownTimerProps {
   /**
@@ -82,7 +82,8 @@ useEventListener('keydown', (event: KeyboardEvent) => {
     event.preventDefault();
     if (isActive.value) {
       pause();
-    } else {
+    }
+    else {
       resume();
     }
   }
@@ -160,7 +161,13 @@ watch(remainingSeconds, (newValue, oldValue) => {
     <!-- <p font-numeral text="light 5xl center">
       {{ remainingMinutes }} : {{ remainingSeconds }}
     </p> -->
-    <p font-numeral text="light 5xl center" w-full flex justify-center>
+    <p
+      font-numeral
+      text="light 5xl center"
+      w-full
+      flex
+      justify-center
+    >
       <span
         v-for="(digit, index) in animatedMinutes"
         :key="'minute-' + index"
@@ -171,7 +178,10 @@ watch(remainingSeconds, (newValue, oldValue) => {
       >
         {{ digit }}
       </span>
-      <span inline-block w-8>:</span>
+      <span
+        inline-block
+        w-8
+      >:</span>
       <span
         v-for="(digit, index) in animatedSeconds"
         :key="'second-' + index"
@@ -193,7 +203,10 @@ watch(remainingSeconds, (newValue, oldValue) => {
       sm:w-xs
     />
 
-    <div flex gap-2>
+    <div
+      flex
+      gap-2
+    >
       <button
         btn-outline
         flex
@@ -202,7 +215,10 @@ watch(remainingSeconds, (newValue, oldValue) => {
         :disabled="isFlashing"
         @click="isActive ? pause() : resume()"
       >
-        <Icon :name="isActive ? 'mdi:pause' : 'mdi:play'" class="w-6 h-6" />
+        <Icon
+          :name="isActive ? 'mdi:pause' : 'mdi:play'"
+          class="w-6 h-6"
+        />
         <!-- <span text-lg>{{ isActive ? 'Pause' : 'Start' }}</span> -->
       </button>
       <button
@@ -217,7 +233,10 @@ watch(remainingSeconds, (newValue, oldValue) => {
           reset(props.duration);
         "
       >
-        <Icon name="mdi:stop" class="w-6 h-6" />
+        <Icon
+          name="mdi:stop"
+          class="w-6 h-6"
+        />
         <!-- <span text-lg>Stop</span> -->
       </button>
     </div>
