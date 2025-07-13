@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CreateTaskDialog from '../components/create-task-dialog/CreateTaskDialog.vue';
+import CreateTaskDialog from '@/components/create-task-dialog/CreateTaskDialog.vue';
 
 const isCreateTaskDialogShown = ref(false);
 
@@ -18,7 +18,7 @@ const toggleCreateTaskDialogVisibility = () => {
       @click="toggleCreateTaskDialogVisibility"
       flex
       items-center
-      btn-rounded
+      btn-circle
       bg-primary
     >
       <Icon name='mdi:add' class="w-6 h-6" />

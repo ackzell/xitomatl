@@ -13,7 +13,7 @@ interface CreateTaskDialogEmits {
   /**
    * Emitted when a task is created.
    */
-  (task: Task): void;
+  (e: 'created', task: Task): void;
 }
 
 const props = defineProps<CreateTaskDialogProps>();
@@ -47,15 +47,15 @@ watch(
   }
 )
 
-const createTaskHandler = (event: Event) => {
-  event.preventDefault();
+const createTaskHandler = () => {
+  console.log(form.value);
 
-  emit(form.value);
+  emit('created', form.value);
 }
 </script>
 
 <template>
-  <form :class="props.isShown ? 'grid' : 'hidden'" absolute top-full right-0 w-xs gap-4 p-8 rounded-md shadow-lg>
+  <form @submit.prevent="createTaskHandler" :class="props.isShown ? 'grid' : 'hidden'" absolute top-full right-0 w-xs gap-4 p-8 rounded-md shadow-lg>
     <div class="form-item" flex flex-col>
       <label for="task-name" font-sans font-semibold mb-2>Task Name<span ms-1>*</span></label>
       <input id="task-name" type="text" v-model="form.name" px-2 py-1 mb-2 border border-black rounded-md />
@@ -70,7 +70,7 @@ const createTaskHandler = (event: Event) => {
         <p v-if="formErrors.description" text-sm text-slate-7>{{ formErrors.description }}</p>
       </transition>
     </div>
-    <button :disabled="isCreateBtnDisabled" @click="createTaskHandler" type="submit" btn-outline w-full bg-primary hover:not-disabled:bg-primary-500>
+    <button :disabled="isCreateBtnDisabled" type="submit" btn-outline w-full bg-primary hover:not-disabled:bg-primary-500>
       Create Task
     </button>
   </form>
