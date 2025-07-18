@@ -23,7 +23,7 @@ const toggleCreateTaskDialogVisibility = () => {
     >
       <Icon name='mdi:add' class="w-6 h-6" />
     </button>
-    <CreateTaskDialog :is-shown="isCreateTaskDialogShown" />
+    <CreateTaskDialog @closed="isCreateTaskDialogShown = false" :is-shown="isCreateTaskDialogShown" />
   </header>
   <slot />
 </template>

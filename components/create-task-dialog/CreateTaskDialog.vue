@@ -14,6 +14,10 @@ interface CreateTaskDialogEmits {
    * Emitted when a task is created.
    */
   (e: 'created', task: Task): void;
+  /**
+   * Emitted when the dialog is closed
+   */
+  (e: 'closed'): void;
 }
 
 const props = defineProps<CreateTaskDialogProps>();
@@ -55,39 +59,79 @@ const createTaskHandler = () => {
 </script>
 
 <template>
-  <form @submit.prevent="createTaskHandler" :class="props.isShown ? 'grid' : 'hidden'" absolute top-full right-0 w-xs gap-4 p-8 rounded-md shadow-lg>
-    <div class="form-item" flex flex-col>
-      <label for="task-name" font-sans font-semibold mb-2>Task Name<span ms-1>*</span></label>
-      <input id="task-name" type="text" v-model="form.name" px-2 py-1 mb-2 border border-black rounded-md />
-      <transition name="grow">
-        <p v-if="formErrors.name" text-sm>{{ formErrors.name }}</p>
-      </transition>
+  <transition name="slide">
+    <div v-if="props.isShown" absolute top-0 right-0 min-h-dvh w-xs space-y-4xl p-8 rounded-l-md bg-primary-700 text-white overflow-hidden>
+      <div flex justify-between items-center>
+        <h2 flex-shrink-0 text-lg font-sans font-bold>New Activity</h2>
+        <button @click="emit('closed')" flex justify-center items-center bg-transparent>
+          <Icon name='mdi:close' h-6 w-6 hover:scale-125 transition-transform cursor-pointer />
+        </button>
+      </div>
+      <form @submit.prevent="createTaskHandler" grid gap-4>
+        <div class="form-item" flex flex-col>
+          <label for="task-name" text-sm font-sans font-semibold mb-2>Task Name<span ms-1>*</span></label>
+          <input id="task-name" type="text" v-model="form.name" px-2 py-1 rounded-md bg-primary-800 focus:outline-none caret-accent />
+          <transition name="grow">
+            <p v-if="formErrors.name" text-sm>{{ formErrors.name }}</p>
+          </transition>
+        </div>
+        <div class="form-item" flex flex-col>
+          <label for="task-description" text-sm font-sans font-semibold>Task Description</label>
+          <textarea id="task-description" v-model="form.description" rows="4" p-2 rounded-md bg-primary-800 focus:outline-none caret-accent />
+          <transition name="grow">
+            <p v-if="formErrors.description" text-sm text-slate-7>{{ formErrors.description }}</p>
+          </transition>
+        </div>
+        <button :disabled="isCreateBtnDisabled" type="submit" py-2 px-4 rounded-md bg-primary>
+          Create Task
+        </button>
+      </form>
     </div>
-    <div class="form-item" flex flex-col>
-      <label for="task-description" font-sans font-semibold>Task Description</label>
-      <textarea id="task-description" v-model="form.description" p-2 border border-black rounded-md />
-      <transition name="grow">
-        <p v-if="formErrors.description" text-sm text-slate-7>{{ formErrors.description }}</p>
-      </transition>
-    </div>
-    <button :disabled="isCreateBtnDisabled" type="submit" btn-outline w-full bg-primary hover:not-disabled:bg-primary-500>
-      Create Task
-    </button>
-  </form>
+  </transition>
 </template>
 
 <style lang="css" scoped>
+.slide-enter-active, .slide-leave-active {
+  transition: width 250ms, opacity 250ms;
+}
+.slide-enter-from, .slide-leave-to {
+  width: 0;
+  opacity: 0;
+}
+
 .form-item > *:not(:last-child) {
   margin-bottom: 0.5rem;
 }
 
 .grow-enter-active, .grow-leave-active {
-  transition: max-height 0.25s ease, opacity 0.25s ease;
+  transition: max-height 250ms, opacity 250ms;
   max-height: 128px;
 }
-
 .grow-enter-from, .grow-leave-to {
   max-height: 0;
   opacity: 0;
+}
+
+input::selection, textarea::selection {
+  background-color: #B1CC34AA;
+}
+
+button[type="submit"] {
+  border: 2px solid;
+  border-color: #B1CC34AA;
+  transition: scale 250ms, border-color 250ms, background-color 250ms, opacity 250ms;
+
+  &:disabled {
+    border-color: transparent;
+    background-color: #a4a4a4;
+    opacity: 50%;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    scale: 105%;
+    border-color: #B1CC34;
+    background-color: #dc2626;
+  }
 }
 </style>
