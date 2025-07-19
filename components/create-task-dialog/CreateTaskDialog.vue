@@ -26,8 +26,8 @@ const dialogElement = useTemplateRef<HTMLElement>('dialog-container');
 
 const form = ref<Task>({
   name: '',
-  description: undefined
-})
+  description: undefined,
+});
 const formErrors = ref<Record<string, string>>({});
 const isCreateBtnDisabled = ref(true);
 
@@ -44,47 +44,145 @@ watch(
       const property = (path as string[]).join('.');
 
       formErrors.value[property] = message;
-    })
+    });
 
     isCreateBtnDisabled.value = !parseResult.success;
   },
   {
-    deep: true
-  }
-)
+    deep: true,
+  },
+);
 
 const createTaskHandler = () => {
   console.log(form.value);
 
   emit('created', form.value);
-}
+};
 </script>
 
 <template>
   <transition name="slide">
-    <div v-if="props.isShown" ref="dialog-container" absolute top-0 right-0 min-h-dvh w-xs space-y-4xl p-8 rounded-l-md bg-primary-700 text-white overflow-hidden>
-      <div flex justify-between items-center>
-        <h2 flex-shrink-0 text-lg font-sans font-bold>New Activity</h2>
-        <button @click="emit('closed')" flex justify-center items-center bg-transparent>
-          <Icon name='mdi:close' h-6 w-6 hover:scale-125 transition-transform cursor-pointer />
+    <div
+      v-if="props.isShown"
+      ref="dialog-container"
+      absolute
+      top-0
+      right-0
+      min-h-dvh
+      w-xs
+      space-y-4xl
+      p-8
+      rounded-l-md
+      bg-primary-700
+      text-white
+      overflow-hidden
+    >
+      <div
+        flex
+        justify-between
+        items-center
+      >
+        <h2
+          flex-shrink-0
+          text-lg
+          font-sans
+          font-bold
+        >
+          New Activity
+        </h2>
+        <button
+          flex
+          justify-center
+          items-center
+          bg-transparent
+          @click="emit('closed')"
+        >
+          <Icon
+            name="mdi:close"
+            h-6
+            w-6
+            hover:scale-125
+            transition-transform
+            cursor-pointer
+          />
         </button>
       </div>
-      <form @submit.prevent="createTaskHandler" grid gap-4>
-        <div class="form-item" flex flex-col>
-          <label for="task-name" text-sm font-sans font-semibold mb-2>Task Name<span ms-1>*</span></label>
-          <input id="task-name" type="text" v-model="form.name" px-2 py-1 rounded-md bg-primary-800 focus:outline-none caret-accent />
+      <form
+        grid
+        gap-4
+        @submit.prevent="createTaskHandler"
+      >
+        <div
+          class="form-item"
+          flex
+          flex-col
+        >
+          <label
+            for="task-name"
+            text-sm
+            font-sans
+            font-semibold
+            mb-2
+          >Task Name<span ms-1>*</span></label>
+          <input
+            id="task-name"
+            v-model="form.name"
+            type="text"
+            px-2
+            py-1
+            rounded-md
+            bg-primary-800
+            focus:outline-none
+            caret-accent
+          >
           <transition name="grow">
-            <p v-if="formErrors.name" text-sm>{{ formErrors.name }}</p>
+            <p
+              v-if="formErrors.name"
+              text-sm
+            >
+              {{ formErrors.name }}
+            </p>
           </transition>
         </div>
-        <div class="form-item" flex flex-col>
-          <label for="task-description" text-sm font-sans font-semibold>Task Description</label>
-          <textarea id="task-description" v-model="form.description" rows="4" p-2 rounded-md bg-primary-800 focus:outline-none caret-accent />
+        <div
+          class="form-item"
+          flex
+          flex-col
+        >
+          <label
+            for="task-description"
+            text-sm
+            font-sans
+            font-semibold
+          >Task Description</label>
+          <textarea
+            id="task-description"
+            v-model="form.description"
+            rows="4"
+            p-2
+            rounded-md
+            bg-primary-800
+            focus:outline-none
+            caret-accent
+          />
           <transition name="grow">
-            <p v-if="formErrors.description" text-sm text-slate-7>{{ formErrors.description }}</p>
+            <p
+              v-if="formErrors.description"
+              text-sm
+              text-slate-7
+            >
+              {{ formErrors.description }}
+            </p>
           </transition>
         </div>
-        <button :disabled="isCreateBtnDisabled" type="submit" py-2 px-4 rounded-md bg-primary>
+        <button
+          :disabled="isCreateBtnDisabled"
+          type="submit"
+          py-2
+          px-4
+          rounded-md
+          bg-primary
+        >
           Create Task
         </button>
       </form>

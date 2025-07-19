@@ -1,0 +1,14 @@
+{
+    "recommendations": [
+        "vue.volar",
+        "dbaeumer.vscode-eslint",
+        "usernamehw.errorlens",
+        "mattpocock.ts-error-translator",
+        "antfu.unocss",
+        "antfu.iconify",
+        "mxsdev.typescript-explorer",
+        "mylesmurphy.prettify-ts",
+        "yoavbls.pretty-ts-errors",
+        "selemondev.shadcn-vue"
+    ]
+}
