@@ -9,16 +9,6 @@ init();
 
 <template>
   <div font-sans>
-    <h1
-      text-3xl
-      font-sans
-    >
-      Xitomatl 🍅
-    </h1>
-
-    <p class="">
-      A pomodoro compliant app
-    </p>
     <div flex>
       <div
         bg="secondary"
