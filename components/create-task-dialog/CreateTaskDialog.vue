@@ -21,8 +21,8 @@ interface CreateTaskDialogEmits {
 }
 
 const props = defineProps<CreateTaskDialogProps>();
-
 const emit = defineEmits<CreateTaskDialogEmits>();
+const dialogElement = useTemplateRef<HTMLElement>('dialog-container');
 
 const form = ref<Task>({
   name: '',
@@ -30,6 +30,8 @@ const form = ref<Task>({
 })
 const formErrors = ref<Record<string, string>>({});
 const isCreateBtnDisabled = ref(true);
+
+onClickOutside(dialogElement, () => emit('closed'));
 
 watch(
   form,
@@ -60,7 +62,7 @@ const createTaskHandler = () => {
 
 <template>
   <transition name="slide">
-    <div v-if="props.isShown" absolute top-0 right-0 min-h-dvh w-xs space-y-4xl p-8 rounded-l-md bg-primary-700 text-white overflow-hidden>
+    <div v-if="props.isShown" ref="dialog-container" absolute top-0 right-0 min-h-dvh w-xs space-y-4xl p-8 rounded-l-md bg-primary-700 text-white overflow-hidden>
       <div flex justify-between items-center>
         <h2 flex-shrink-0 text-lg font-sans font-bold>New Activity</h2>
         <button @click="emit('closed')" flex justify-center items-center bg-transparent>
