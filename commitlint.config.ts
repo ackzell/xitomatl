@@ -1,5 +1,4 @@
-import { type UserConfig } from "@commitlint/types";
-import { RuleConfigSeverity } from "@commitlint/types";
+import { RuleConfigSeverity, type UserConfig } from "@commitlint/types";
 
 const CommitlintConfig: UserConfig = {
   parserPreset: {
@@ -13,6 +12,7 @@ const CommitlintConfig: UserConfig = {
       rules: {
         "xitomatl-header-pattern": (parsed) => {
           const { type, issueNumber, title } = parsed;
+
           if (type === null && issueNumber === null && title === null) {
             return [
               false,
@@ -38,19 +38,19 @@ const CommitlintConfig: UserConfig = {
   rules: {
     "xitomatl-header-pattern": [RuleConfigSeverity.Error, "always"] as const,
     "xitomatl-type-enum": [
-			RuleConfigSeverity.Error,
-			"always",
-			[
-				"chore",
-				"docs",
-				"feat",
-				"fix",
-				"perf",
-				"refactor",
-				"style",
-				"test",
-			],
-		] as const
+      RuleConfigSeverity.Error,
+      "always",
+      [
+        "chore",
+        "docs",
+        "feat",
+        "fix",
+        "perf",
+        "refactor",
+        "style",
+        "test",
+      ],
+    ] as const
   },
 };
 

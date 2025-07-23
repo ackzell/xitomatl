@@ -12,8 +12,8 @@
     "lintfix": "eslint . --fix",
     "prepare": "husky",
     "commitlint:test:error": "echo This is the commit | commitlint",
-    "commitlint:test:type-error": "echo noop(#14): Title of commit | commitlint",
-    "commitlint:test:success": "echo fix(#14): Title of commit | commitlint"
+    "commitlint:test:type-error": "echo 'noop(#14): Title of commit' | commitlint",
+    "commitlint:test:success": "echo 'fix(#14): Title of commit' | commitlint"
   },
   "dependencies": {
     "@unocss/core": "^66.0.0",
