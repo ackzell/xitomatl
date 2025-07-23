@@ -10,7 +10,10 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "lintfix": "eslint . --fix",
-    "prepare": "husky"
+    "prepare": "husky",
+    "commitlint:test:error": "echo This is the commit | commitlint",
+    "commitlint:test:type-error": "echo 'noop(#14): Title of commit' | commitlint",
+    "commitlint:test:success": "echo 'fix(#14): Title of commit' | commitlint"
   },
   "dependencies": {
     "@unocss/core": "^66.0.0",
@@ -29,6 +32,9 @@
   },
   "packageManager": "pnpm@9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c",
   "devDependencies": {
+    "@commitlint/cli": "19.8.1",
+    "@commitlint/config-conventional": "19.8.1",
+    "@commitlint/types": "19.8.1",
     "@nuxt/eslint": "^1.1.0",
     "@nuxt/icon": "^1.12.0",
     "@types/howler": "^2.2.12",
